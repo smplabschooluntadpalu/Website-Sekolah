@@ -1,0 +1,191 @@
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Beranda</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 6 6 6-6 6"/></svg>
+      <span>Berita</span>
+    </nav>
+    <h1>Berita &amp; Pengumuman</h1>
+    <p>Kabar akademik, prestasi, agenda, dan pengumuman resmi SMP Labschool UNTAD.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <!-- Artikel utama -->
+    <article class="card post--wide reveal" style="margin-bottom:44px">
+      <div class="card__media">
+        <img src="assets/gen-prestasi.jpg" alt="Siswa meraih piala dan medali">
+        <span class="card__badge">Utama</span>
+      </div>
+      <div class="card__body">
+        <div class="card__meta">
+          <span class="pill">Prestasi</span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+            12 Oktober 2026
+          </span>
+          <span>· Humas Sekolah</span>
+        </div>
+        <h2 style="font-size:clamp(1.5rem,2.6vw,2rem)">Tiga siswa SMP Labschool UNTAD meraih medali pada kompetisi sains pelajar</h2>
+        <p>Prestasi ini merupakan hasil pembinaan ekstrakurikuler sains yang berjalan sejak awal semester. Siswa dibimbing menyusun proyek pengamatan sederhana, lalu mempresentasikan hasilnya di hadapan dewan juri.</p>
+        <a class="link-arrow" href="#">
+          Baca selengkapnya
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- Filter -->
+    <div class="filters" id="filters" role="tablist" aria-label="Filter kategori berita">
+      <button class="filter-btn is-active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="akademik">Akademik</button>
+      <button class="filter-btn" data-filter="prestasi">Prestasi</button>
+      <button class="filter-btn" data-filter="kesiswaan">Kesiswaan</button>
+      <button class="filter-btn" data-filter="pengumuman">Pengumuman</button>
+    </div>
+    <p class="mb-0" style="color:var(--ink-3);font-size:.85rem;margin-bottom:24px"><span id="resultCount">6 artikel</span></p>
+
+    <div class="grid g-3" id="news-list">
+      <article class="card reveal" data-cat="kesiswaan">
+        <div class="card__media">
+          <img src="assets/gen-olahraga.jpg" alt="Siswa bermain voli" loading="lazy">
+          <span class="card__badge" style="background:#1f9d74;color:#fff">Kesiswaan</span>
+        </div>
+        <div class="card__body">
+          <div class="card__meta">
+            <span class="pill">Kesiswaan</span>
+            <span>02 Okt 2026</span>
+          </div>
+          <h3><a href="#">Turnamen voli antarkelas meriahkan pekan olahraga sekolah</a></h3>
+          <p>Seluruh rombongan belajar ikut ambil bagian dengan sportivitas tinggi.</p>
+          <a class="link-arrow" href="#">Baca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="akademik">
+        <div class="card__media">
+          <img src="assets/gen-lab.jpg" alt="Praktikum di laboratorium IPA" loading="lazy">
+          <span class="card__badge">Akademik</span>
+        </div>
+        <div class="card__body">
+          <div class="card__meta">
+            <span class="pill">Akademik</span>
+            <span>24 Sep 2026</span>
+          </div>
+          <h3><a href="#">Program riset remaja: siswa belajar mengolah data hasil pengamatan</a></h3>
+          <p>Kegiatan ini melatih siswa menyusun laporan sederhana dari pengamatan di lingkungan sekolah.</p>
+          <a class="link-arrow" href="#">Baca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="pengumuman">
+        <div class="card__media">
+          <img src="assets/campus.jpg" alt="Gedung sekolah" loading="lazy">
+          <span class="card__badge" style="background:#000080">PPDB</span>
+        </div>
+        <div class="card__body">
+          <div class="card__meta">
+            <span class="pill">Pengumuman</span>
+            <span>12 Sep 2026</span>
+          </div>
+          <h3><a href="#">PPDB 2026/2027 gelombang 1 resmi dibuka</a></h3>
+          <p>Pendaftaran dilakukan daring melalui formulir resmi sekolah hingga 20 Desember 2026.</p>
+          <a class="link-arrow" href="#">Baca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="kesiswaan">
+        <div class="card__media">
+          <img src="assets/gen-seni.jpg" alt="Pentas seni siswa" loading="lazy">
+          <span class="card__badge" style="background:#7b5cd6;color:#fff">Kesiswaan</span>
+        </div>
+        <div class="card__body">
+          <div class="card__meta">
+            <span class="pill">Kesiswaan</span>
+            <span>05 Sep 2026</span>
+          </div>
+          <h3><a href="#">Pekan Seni &amp; Budaya kembali digelar Desember</a></h3>
+          <p>Melibatkan seluruh ekstrakurikuler seni dan mengundang sekolah mitra di Kota Palu.</p>
+          <a class="link-arrow" href="#">Baca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="prestasi kesiswaan">
+        <div class="card__media">
+          <img src="assets/gen-pramuka.jpg" alt="Kegiatan pramuka siswa" loading="lazy">
+          <span class="card__badge" style="background:#e8a33d">Kesiswaan</span>
+        </div>
+        <div class="card__body">
+          <div class="card__meta">
+            <span class="pill">Kesiswaan</span>
+            <span>28 Agu 2026</span>
+          </div>
+          <h3><a href="#">Kegiatan pramuka: latihan kepemimpinan dan kedisiplinan</a></h3>
+          <p>Dilaksanakan setiap Rabu dengan seragam pramuka lengkap dan setangan leher.</p>
+          <a class="link-arrow" href="#">Baca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="pengumuman akademik">
+        <div class="card__media">
+          <img src="assets/gen-belajar.jpg" alt="Siswa belajar di kelas" loading="lazy">
+          <span class="card__badge" style="background:#000080">Pengumuman</span>
+        </div>
+        <div class="card__body">
+          <div class="card__meta">
+            <span class="pill">Pengumuman</span>
+            <span>15 Agu 2026</span>
+          </div>
+          <h3><a href="#">Jadwal asesmen tengah semester ganjil 2026/2027</a></h3>
+          <p>Asesmen dilaksanakan pada Oktober 2026 dengan format tertulis dan praktik.</p>
+          <a class="link-arrow" href="#">Baca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Pagination -->
+    <nav class="pagination" aria-label="Navigasi halaman">
+      <span class="pagination__link is-current" aria-current="page">1</span>
+      <a class="pagination__link" href="#">2</a>
+      <a class="pagination__link" href="#">3</a>
+      <a class="pagination__link" href="#">Berikutnya &rarr;</a>
+    </nav>
+  </div>
+</section>
+
+<!-- Agenda -->
+<section class="section section--cream">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Agenda</span>
+      <h2>Kegiatan mendatang</h2>
+    </div>
+    <div class="agenda reveal">
+      <div class="agenda__item">
+        <div class="agenda__date"><strong>22</strong><span>Nov</span></div>
+        <div class="agenda__body">
+          <h4>Open House &amp; Tur Sekolah</h4>
+          <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 08.00 – 12.00 WITA · Aula Sekolah</p>
+        </div>
+        <span class="pill pill--gold" style="margin-left:auto">Publik</span>
+      </div>
+      <div class="agenda__item">
+        <div class="agenda__date"><strong>05</strong><span>Des</span></div>
+        <div class="agenda__body">
+          <h4>Pekan Seni &amp; Budaya</h4>
+          <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 09.00 – 15.00 WITA · Lapangan Sekolah</p>
+        </div>
+        <span class="pill" style="margin-left:auto">Siswa</span>
+      </div>
+      <div class="agenda__item">
+        <div class="agenda__date"><strong>20</strong><span>Des</span></div>
+        <div class="agenda__body">
+          <h4>Penutupan PPDB Gelombang 1</h4>
+          <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"/></svg> Pendaftaran daring · 23.59 WITA</p>
+        </div>
+        <span class="pill pill--green" style="margin-left:auto">Calon siswa</span>
+      </div>
+    </div>
+  </div>
+</section>

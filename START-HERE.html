@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mulai di sini — Website SMP Labschool UNTAD</title>
+<style>
+  :root{
+    --navy:#001a66; --navy-900:#00104f; --gold:#f7941d; --cream:#f8f6f1;
+    --ink:#17202e; --ink-3:#6b7a90; --line:#e4e8ef;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;color:var(--ink);
+       background:var(--cream);line-height:1.65}
+  .wrap{max-width:900px;margin:0 auto;padding:40px 22px 70px}
+  header{background:var(--navy-900);color:#c3d2e5;padding:44px 0 40px}
+  header .wrap{padding-bottom:0}
+  h1{font-family:Georgia,serif;color:#fff;font-size:2rem;margin:0 0 8px}
+  header p{margin:0;color:#a9bcd4}
+  .badge{display:inline-block;background:rgba(232,163,61,.16);color:var(--gold);
+         font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+         padding:6px 12px;border-radius:999px;margin-bottom:14px}
+  h2{font-family:Georgia,serif;font-size:1.3rem;margin:36px 0 12px;color:var(--navy-900)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 26px;
+        box-shadow:0 10px 30px -22px rgba(8,26,51,.4);margin-top:18px}
+  ol,ul{margin:0;padding-left:1.2em}
+  li{margin:.35em 0}
+  code{background:#eef2f8;padding:2px 7px;border-radius:6px;font-size:.88em}
+  .links{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:16px}
+  .links a{display:flex;align-items:center;justify-content:space-between;gap:10px;
+           background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 16px;
+           color:var(--navy);font-weight:700;font-size:.92rem;text-decoration:none;transition:.2s}
+  .links a:hover{border-color:var(--gold);background:#fdf3e2;transform:translateY(-2px)}
+  .links span{color:var(--ink-3);font-weight:500;font-size:.78rem}
+  .note{background:#fdf3e2;border:1px solid rgba(232,163,61,.4);border-radius:12px;
+        padding:16px 18px;font-size:.9rem;color:#7a5518}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr}}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  th{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3)}
+  footer{color:var(--ink-3);font-size:.82rem;margin-top:40px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <span class="badge">Panduan singkat</span>
+    <h1>Website SMP Labschool UNTAD</h1>
+    <p>SMP Labschool UNTAD Palu · Yayasan Bungamputi — versi custom bergaya Eduma, ringan, responsif, tanpa WordPress.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <h2 style="margin-top:0">Halaman yang siap dibuka</h2>
+    <div class="links">
+      <a href="index.html">Beranda <span>gedung, kepsek, seragam</span></a>
+      <a href="profil.html">Profil Sekolah <span>visi, kepsek, struktur</span></a>
+      <a href="program.html">Program &amp; Seragam <span>seragam, ekskul, prestasi</span></a>
+      <a href="berita.html">Berita <span>filter kategori</span></a>
+      <a href="galeri.html">Galeri <span>lightbox</span></a>
+      <a href="ppdb.html">PPDB <span>formulir + FAQ</span></a>
+      <a href="kontak.html">Kontak <span>peta + form</span></a>
+      <a href="README.md">README <span>panduan lengkap</span></a>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2 style="margin-top:0">Cara mengedit</h2>
+      <ol>
+        <li>Ubah header/footer/menu di <code>_src/header.html</code> &amp; <code>_src/footer.html</code>.</li>
+        <li>Ubah isi halaman di <code>_src/pages/*.html</code>.</li>
+        <li>Jalankan <code>python3 _src/build.py</code> untuk regenerasi semua halaman.</li>
+        <li>Ganti foto di folder <code>assets/</code> dengan nama file yang sama.</li>
+        <li>Atur warna brand di <code>css/style.css</code> bagian <code>:root</code>.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0">Cara publish</h2>
+      <ol>
+        <li>Buka <strong>app.netlify.com/drop</strong> atau <strong>Cloudflare Pages</strong>.</li>
+        <li>Drag folder <code>sekolah</code> ke halaman tersebut — langsung online.</li>
+        <li>Hubungkan domain <code>nama-sekolah.sch.id</code> lewat menu Domain.</li>
+        <li>Formulir PPDB: sambungkan ke Google Forms / Formspree / WhatsApp (lihat README).</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">Fitur yang sudah berfungsi</h2>
+    <table>
+      <tr><th>Fitur</th><th>Status</th></tr>
+      <tr><td>Menu responsif + drawer mobile</td><td>✔ jalan</td></tr>
+      <tr><td>Countdown PPDB (otomatis)</td><td>✔ jalan</td></tr>
+      <tr><td>Filter kategori berita</td><td>✔ jalan</td></tr>
+      <tr><td>Validasi formulir</td><td>✔ jalan (pengiriman masih demo)</td></tr>
+      <tr><td>Lightbox galeri</td><td>✔ jalan</td></tr>
+      <tr><td>Animasi reveal &amp; counter angka</td><td>✔ jalan</td></tr>
+      <tr><td>Peta lokasi</td><td>butuh internet (embed OpenStreetMap)</td></tr>
+      <tr><td>Logo, foto gedung, foto kepsek & siswa asli</td><td>✔ terpasang</td></tr>
+      <tr><td>Pengiriman email/form ke server</td><td>belum — perlu layanan formulir</td></tr>
+    </table>
+  </div>
+
+  <p class="note"><strong>Catatan:</strong> nama sekolah, alamat, dan foto sudah memakai data sekolah; namun NPSN, nomor telepon, harga,
+  jadwal, prestasi, dan daftar guru masih contoh. Ganti dengan data resmi sekolah sebelum dipublikasikan.</p>
+
+  <footer>Dibuat sebagai purwarupa desain — bebas dimodifikasi sesuai kebutuhan sekolah.</footer>
+</div>
+</body>
+</html>
