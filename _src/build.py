@@ -21,6 +21,8 @@ TEMPLATE = """<!DOCTYPE html>
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <meta name="theme-color" content="#081a33">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">

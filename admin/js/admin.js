@@ -97,7 +97,7 @@
       err.hidden = false;
     } finally {
       btn.disabled = false;
-      btn.textContent = "Masuk";
+      btn.textContent = "LOGIN";
     }
   });
 
