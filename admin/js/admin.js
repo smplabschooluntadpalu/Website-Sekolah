@@ -78,6 +78,20 @@
     else showLogin();
   }
 
+  /* ---------- Toggle tampil/sembunyi password ---------- */
+  const togglePw = $("#togglePassword");
+  if (togglePw) {
+    togglePw.addEventListener("click", () => {
+      const input = $("#loginPassword");
+      const show = input.type === "password";
+      input.type = show ? "text" : "password";
+      togglePw.querySelector(".eye-open").style.display = show ? "none" : "";
+      togglePw.querySelector(".eye-closed").style.display = show ? "" : "none";
+      togglePw.setAttribute("aria-label", show ? "Sembunyikan password" : "Tampilkan password");
+      input.focus();
+    });
+  }
+
   /* ---------- Login / Logout ---------- */
   $("#loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -90,6 +104,7 @@
     btn.textContent = "Memproses...";
     try {
       const user = await SupabaseDB.auth.signIn(email, password);
+      $("#loginForm").reset(); // bersihkan email & password setelah login
       showApp(user);
       toast("Berhasil masuk. Selamat datang!");
     } catch (ex) {
@@ -103,6 +118,7 @@
 
   $("#logoutBtn").addEventListener("click", async () => {
     await SupabaseDB.auth.signOut();
+    $("#loginForm").reset(); // bersihkan isian saat keluar
     showLogin();
     toast("Anda telah keluar.");
   });

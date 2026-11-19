@@ -102,6 +102,16 @@ img { max-width: 100%; }
 .field .hint { display: block; margin-top: 5px; font-size: .8rem; color: var(--ink-3); }
 .field-check { display: flex; align-items: center; gap: 10px; }
 .field-check input { width: 18px; height: 18px; accent-color: var(--navy-700); }
+.password-wrap { position: relative; }
+.password-wrap input { padding-right: 46px; }
+.password-toggle {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center;
+  border: none; border-radius: 8px; background: transparent; color: var(--ink-3); cursor: pointer;
+}
+.password-toggle:hover { color: var(--navy-700); background: rgba(0, 32, 128, .06); }
+.password-toggle svg { width: 19px; height: 19px; }
+
 .form-error {
   background: #fdf0f0; color: var(--red); border: 1px solid #f3c2c2;
   padding: 10px 12px; border-radius: 10px; font-size: .88rem; margin: 0 0 14px;
