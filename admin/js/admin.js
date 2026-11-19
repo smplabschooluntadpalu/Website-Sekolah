@@ -49,11 +49,18 @@
     return `${stamp}-${rand}.${ext || "jpg"}`;
   }
 
+  // Path gambar relatif (mis. "assets/gen-1.jpg") mengacu ke situs publik
+  // di root; panel admin berada di /admin/ sehingga perlu naik satu level.
+  function resolveImg(url) {
+    if (!url) return "";
+    if (/^(https?:)?\/\//.test(url) || url.startsWith("data:") || url.startsWith("/")) return url;
+    return "../" + url.replace(/^\.?\//, "");
+  }
+
   /* ---------- Sesi & tampilan ---------- */
   function showApp(user) {
     loginView.hidden = true;
     appView.hidden = false;
-    $("#sidebarUser").textContent = user ? user.email : "";
     loadDashboard();
     switchView("dashboard");
   }
@@ -202,7 +209,7 @@
           <div>atau tempel URL gambar pada kolom di bawah</div>
         </div>
         <input type="text" id="${id}" placeholder="https://... (URL gambar)" value="${esc(value || "")}" style="margin-top:10px">
-        <div class="img-preview" id="${id}-preview">${value ? `<img src="${esc(value)}" alt="">` : ""}</div>
+        <div class="img-preview" id="${id}-preview">${value ? `<img src="${esc(resolveImg(value))}" alt="">` : ""}</div>
       </div>`;
   }
   function bindUploadField(id, onDone) {
@@ -234,7 +241,7 @@
       }
     });
     urlInput.addEventListener("input", () => {
-      preview.innerHTML = urlInput.value ? `<img src="${esc(urlInput.value)}" alt="">` : "";
+      preview.innerHTML = urlInput.value ? `<img src="${esc(resolveImg(urlInput.value))}" alt="">` : "";
     });
   }
 
@@ -513,7 +520,7 @@
       grid.innerHTML = galeriCache
         .map((g, i) => `
         <div class="gallery-card">
-          <img src="${esc(g.gambar)}" alt="${esc(g.keterangan)}" loading="lazy">
+          <img src="${esc(resolveImg(g.gambar))}" alt="${esc(g.keterangan)}" loading="lazy">
           <div class="gc-body">
             <p class="gc-cap">${esc(g.keterangan)}</p>
             <div class="gc-actions">
