@@ -82,6 +82,7 @@ img { max-width: 100%; }
 .login-brand--center { flex-direction: column; text-align: center; gap: 12px; }
 .login-brand--center img { width: 88px; height: 88px; }
 .login-brand--center strong { font-size: 1.08rem; letter-spacing: .03em; color: var(--navy-900); }
+.login-brand--center .login-yayasan { font-size: .78rem; font-weight: 700; letter-spacing: .14em; color: var(--ink-3); margin-bottom: -6px; }
 .login-title { text-align: center; letter-spacing: .08em; margin-bottom: 20px !important; }
 .login-sub { color: var(--ink-2); font-size: .92rem; margin: 0 0 20px; }
 .login-back { display: inline-block; margin-top: 16px; font-size: .88rem; color: var(--navy-700); text-decoration: none; }

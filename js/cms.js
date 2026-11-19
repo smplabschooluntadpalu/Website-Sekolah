@@ -105,6 +105,21 @@
     if (P.npsn) {
       $$("[data-cms-npsn]").forEach((el) => (el.textContent = "NPSN " + P.npsn));
     }
+    // Tautan media sosial (topbar & footer)
+    ["instagram", "facebook", "youtube", "tiktok"].forEach((nama) => {
+      const url = (P["sosial_" + nama] || "").trim();
+      $$(`[data-cms-sosial="${nama}"]`).forEach((el) => {
+        if (url) {
+          el.href = url;
+          el.target = "_blank";
+          el.rel = "noopener";
+          el.style.display = "";
+        } else {
+          // Ikon disembunyikan jika URL belum diisi admin
+          el.style.display = "none";
+        }
+      });
+    });
     // Target countdown PPDB
     if (P.ppdb_target) {
       const cd = $("#countdown");

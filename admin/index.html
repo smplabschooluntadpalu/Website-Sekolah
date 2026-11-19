@@ -16,6 +16,7 @@
   <div class="login-card">
     <div class="login-brand login-brand--center">
       <img src="../assets/logo.png" alt="Logo SMP Labschool UNTAD">
+      <span class="login-yayasan">YAYASAN BUNGAMPUTI</span>
       <strong>SMP LABSCHOOL UNTAD PALU</strong>
     </div>
     <h1 class="login-title">ADMIN PANEL</h1>
@@ -25,7 +26,7 @@
         <input id="loginEmail" type="email" autocomplete="username" required placeholder="admin@sekolah.sch.id">
       </div>
       <div class="field">
-        <label for="loginPassword">Kata sandi</label>
+        <label for="loginPassword">Password</label>
         <input id="loginPassword" type="password" autocomplete="current-password" required placeholder="••••••••">
       </div>
       <p class="form-error" id="loginError" hidden></p>
@@ -206,6 +207,23 @@
           <div class="field">
             <label for="p_npsn">NPSN</label>
             <input id="p_npsn" data-key="npsn" type="text">
+          </div>
+          <div class="field">
+            <label for="p_sosial_instagram">Instagram (URL)</label>
+            <input id="p_sosial_instagram" data-key="sosial_instagram" type="url" placeholder="https://instagram.com/...">
+          </div>
+          <div class="field">
+            <label for="p_sosial_facebook">Facebook (URL)</label>
+            <input id="p_sosial_facebook" data-key="sosial_facebook" type="url" placeholder="https://facebook.com/...">
+          </div>
+          <div class="field">
+            <label for="p_sosial_youtube">YouTube (URL)</label>
+            <input id="p_sosial_youtube" data-key="sosial_youtube" type="url" placeholder="https://youtube.com/...">
+          </div>
+          <div class="field">
+            <label for="p_sosial_tiktok">TikTok (URL)</label>
+            <input id="p_sosial_tiktok" data-key="sosial_tiktok" type="url" placeholder="https://tiktok.com/@...">
+            <small class="hint">Kosongkan URL untuk menyembunyikan ikonnya dari website.</small>
           </div>
           <div class="field">
             <label for="p_ppdb_target">Penutupan PPDB (countdown beranda)</label>
