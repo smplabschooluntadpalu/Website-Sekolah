@@ -12,7 +12,8 @@
 
 <section class="section">
   <div class="container">
-    <!-- Artikel utama -->
+    <!-- Artikel utama (diisi dinamis dari Supabase via js/cms.js; statis = fallback) -->
+    <div id="berita-unggulan">
     <article class="card post--wide reveal" style="margin-bottom:44px">
       <div class="card__media">
         <img src="assets/gen-prestasi.jpg" alt="Siswa meraih piala dan medali">
@@ -161,7 +162,7 @@
       <span class="eyebrow">Agenda</span>
       <h2>Kegiatan mendatang</h2>
     </div>
-    <div class="agenda reveal">
+    <div class="agenda reveal" id="agenda-list">
       <div class="agenda__item">
         <div class="agenda__date"><strong>22</strong><span>Nov</span></div>
         <div class="agenda__body">

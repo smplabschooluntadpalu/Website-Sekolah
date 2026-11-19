@@ -133,7 +133,9 @@
   /* ---------- 7. Countdown PPDB ---------- */
   const cd = $("#countdown");
   if (cd) {
-    const target = new Date(cd.dataset.target || "2027-06-30T23:59:59+08:00");
+    // Baca target setiap tick agar mendukung update dinamis dari CMS (js/cms.js)
+    const getTarget = () =>
+      new Date(cd.dataset.target || "2027-06-30T23:59:59+08:00");
     const cells = {
       d: $("#cd-days", cd),
       h: $("#cd-hours", cd),
@@ -142,7 +144,7 @@
     };
     const pad = (n) => String(n).padStart(2, "0");
     const tick = () => {
-      const diff = target - new Date();
+      const diff = getTarget() - new Date();
       if (diff <= 0) {
         Object.values(cells).forEach((c) => c && (c.textContent = "00"));
         return;
@@ -164,12 +166,13 @@
   /* ---------- 8. Filter berita ---------- */
   const filterWrap = $("#filters");
   if (filterWrap) {
-    const items = $$("[data-cat]");
+    // Query dinamis: mendukung kartu berita yang dirender CMS (js/cms.js)
     filterWrap.addEventListener("click", (e) => {
       const btn = e.target.closest(".filter-btn");
       if (!btn) return;
       $$(".filter-btn", filterWrap).forEach((b) => b.classList.remove("is-active"));
       btn.classList.add("is-active");
+      const items = $$("[data-cat]");
       const cat = btn.dataset.filter;
       items.forEach((item) => {
         const show = cat === "all" || item.dataset.cat.split(" ").includes(cat);

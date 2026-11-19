@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel Admin — SMP Labschool UNTAD Palu</title>
+<meta name="description" content="Panel admin untuk mengelola berita, agenda, galeri, dan informasi website SMP Labschool UNTAD Palu.">
+<meta name="theme-color" content="#00104f">
+<link rel="icon" href="../assets/logo.png">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<div class="login-wrap" id="loginView">
+  <div class="login-card">
+    <div class="login-brand">
+      <img src="../assets/logo.png" alt="Logo SMP Labschool UNTAD">
+      <div>
+        <strong>SMP Labschool UNTAD Palu</strong>
+        <span>Panel Admin Website</span>
+      </div>
+    </div>
+    <h1>Masuk Admin</h1>
+    <p class="login-sub">Gunakan akun admin yang telah dibuat di Supabase.</p>
+    <form id="loginForm" novalidate>
+      <div class="field">
+        <label for="loginEmail">Email</label>
+        <input id="loginEmail" type="email" autocomplete="username" required placeholder="admin@sekolah.sch.id">
+      </div>
+      <div class="field">
+        <label for="loginPassword">Kata sandi</label>
+        <input id="loginPassword" type="password" autocomplete="current-password" required placeholder="••••••••">
+      </div>
+      <p class="form-error" id="loginError" hidden></p>
+      <button class="btn btn-primary btn-block" type="submit" id="loginBtn">Masuk</button>
+    </form>
+    <a class="login-back" href="../index.html">&larr; Kembali ke website</a>
+  </div>
+</div>
+
+<!-- ================= APP ================= -->
+<div class="app" id="appView" hidden>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <img src="../assets/logo.png" alt="">
+      <div>
+        <strong>SMP Labschool</strong>
+        <span>UNTAD Palu · Admin</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <button class="nav-item is-active" data-view="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        Dashboard
+      </button>
+      <button class="nav-item" data-view="berita">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0V9"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg>
+        Berita
+      </button>
+      <button class="nav-item" data-view="agenda">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+        Agenda
+      </button>
+      <button class="nav-item" data-view="galeri">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L6 21"/></svg>
+        Galeri
+      </button>
+      <button class="nav-item" data-view="pengaturan">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Pengaturan
+      </button>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="nav-item" href="../index.html" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+        Lihat Website
+      </a>
+      <button class="nav-item" id="logoutBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+        Keluar
+      </button>
+      <p class="sidebar-user" id="sidebarUser"></p>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn" id="burger" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <h1 id="pageTitle">Dashboard</h1>
+      <span class="topbar-badge">Admin</span>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section class="view" id="view-dashboard">
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-num" id="statBerita">–</span>
+          <span class="stat-label">Total Berita</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="statAgenda">–</span>
+          <span class="stat-label">Agenda</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="statGaleri">–</span>
+          <span class="stat-label">Foto Galeri</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="statPengaturan">–</span>
+          <span class="stat-label">Pengaturan</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Aksi Cepat</h2>
+        <div class="quick-actions">
+          <button class="btn btn-primary" data-goto="berita" data-action="new">+ Tulis Berita Baru</button>
+          <button class="btn btn-outline" data-goto="agenda" data-action="new">+ Tambah Agenda</button>
+          <button class="btn btn-outline" data-goto="galeri" data-action="new">+ Upload Foto</button>
+          <button class="btn btn-outline" data-goto="pengaturan">Ubah Info Kontak</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Cara Kerja</h2>
+        <ol class="howto">
+          <li>Semua perubahan yang disimpan di panel ini <strong>langsung tampil</strong> di website (berita, agenda, galeri, info kontak, statistik, dan tanggal penutupan PPDB).</li>
+          <li>Untuk gambar, klik <strong>Upload</strong> pada formulir — foto tersimpan otomatis di Supabase Storage. Bisa juga menempel URL gambar langsung.</li>
+          <li>Satu berita bisa ditandai <strong>Unggulan</strong> untuk tampil besar di halaman Berita.</li>
+          <li>Jika Supabase sedang tidak terjangkau, website tetap menampilkan konten statis terakhir.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- BERITA -->
+    <section class="view" id="view-berita" hidden>
+      <div class="view-head">
+        <p>Kelola berita &amp; pengumuman yang tampil di halaman Berita dan Beranda.</p>
+        <button class="btn btn-primary" id="btnNewBerita">+ Berita Baru</button>
+      </div>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr><th>Judul</th><th>Kategori</th><th>Tanggal</th><th>Unggulan</th><th class="col-action">Aksi</th></tr>
+          </thead>
+          <tbody id="beritaTable"></tbody>
+        </table>
+        <p class="empty" id="beritaEmpty" hidden>Belum ada berita. Klik “+ Berita Baru” untuk mulai.</p>
+      </div>
+    </section>
+
+    <!-- AGENDA -->
+    <section class="view" id="view-agenda" hidden>
+      <div class="view-head">
+        <p>Kelola agenda kegiatan yang tampil di halaman Berita dan Beranda.</p>
+        <button class="btn btn-primary" id="btnNewAgenda">+ Agenda Baru</button>
+      </div>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr><th>Kegiatan</th><th>Tanggal</th><th>Waktu</th><th>Tempat</th><th>Audiens</th><th class="col-action">Aksi</th></tr>
+          </thead>
+          <tbody id="agendaTable"></tbody>
+        </table>
+        <p class="empty" id="agendaEmpty" hidden>Belum ada agenda. Klik “+ Agenda Baru” untuk mulai.</p>
+      </div>
+    </section>
+
+    <!-- GALERI -->
+    <section class="view" id="view-galeri" hidden>
+      <div class="view-head">
+        <p>Kelola foto galeri. Urutan tampil mengikuti tombol naik/turun.</p>
+        <button class="btn btn-primary" id="btnNewGaleri">+ Tambah Foto</button>
+      </div>
+      <div class="gallery-grid" id="galeriGrid"></div>
+      <p class="empty" id="galeriEmpty" hidden>Belum ada foto. Klik “+ Tambah Foto” untuk mulai.</p>
+    </section>
+
+    <!-- PENGATURAN -->
+    <section class="view" id="view-pengaturan" hidden>
+      <div class="view-head">
+        <p>Informasi umum sekolah yang tampil di header, footer, halaman Kontak, dan Beranda.</p>
+      </div>
+      <form id="pengaturanForm" class="panel form-panel">
+        <div class="form-grid-2">
+          <div class="field">
+            <label for="p_telepon">Telepon</label>
+            <input id="p_telepon" data-key="telepon" type="text">
+          </div>
+          <div class="field">
+            <label for="p_telepon_link">Telepon (format internasional, untuk tombol tel:)</label>
+            <input id="p_telepon_link" data-key="telepon_link" type="text" placeholder="+62451421041">
+          </div>
+          <div class="field">
+            <label for="p_email">Email</label>
+            <input id="p_email" data-key="email" type="email">
+          </div>
+          <div class="field">
+            <label for="p_jam_layanan">Jam layanan</label>
+            <input id="p_jam_layanan" data-key="jam_layanan" type="text">
+          </div>
+          <div class="field field-full">
+            <label for="p_alamat">Alamat</label>
+            <textarea id="p_alamat" data-key="alamat" rows="2"></textarea>
+          </div>
+          <div class="field">
+            <label for="p_npsn">NPSN</label>
+            <input id="p_npsn" data-key="npsn" type="text">
+          </div>
+          <div class="field">
+            <label for="p_ppdb_target">Penutupan PPDB (countdown beranda)</label>
+            <input id="p_ppdb_target" data-key="ppdb_target" type="datetime-local">
+            <small class="hint">Format: tanggal &amp; jam penutupan pendaftaran.</small>
+          </div>
+          <div class="field">
+            <label for="p_stat_siswa">Statistik: Siswa aktif</label>
+            <input id="p_stat_siswa" data-key="stat_siswa" type="number" min="0">
+          </div>
+          <div class="field">
+            <label for="p_stat_guru">Statistik: Guru &amp; staf</label>
+            <input id="p_stat_guru" data-key="stat_guru" type="number" min="0">
+          </div>
+          <div class="field">
+            <label for="p_stat_ekskul">Statistik: Ekstrakurikuler</label>
+            <input id="p_stat_ekskul" data-key="stat_ekskul" type="number" min="0">
+          </div>
+          <div class="field">
+            <label for="p_stat_lulusan">Statistik: % lulusan lanjut SMA/SMK</label>
+            <input id="p_stat_lulusan" data-key="stat_lulusan" type="number" min="0" max="100">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" id="btnSavePengaturan">Simpan Pengaturan</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</div>
+
+<!-- ================= MODAL ================= -->
+<div class="modal-backdrop" id="modalBackdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h2 id="modalTitle">Formulir</h2>
+      <button class="icon-btn" id="modalClose" aria-label="Tutup">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <form id="modalForm" class="modal-body" novalidate></form>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" hidden></div>
+
+<script src="../js/config.js"></script>
+<script src="../js/supabase.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

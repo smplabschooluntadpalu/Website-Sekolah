@@ -42,6 +42,9 @@ TEMPLATE = """<!DOCTYPE html>
   <img alt="" id="lightboxImg">
 </div>
 
+<script src="js/config.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/cms.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
