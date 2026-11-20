@@ -706,12 +706,18 @@
   let teksPengaturan = null; // cache tabel pengaturan
 
   function labelTeks(key) {
-    const part = key.split(".")[1] || key;
-    const segs = part.split("_");
-    const jenis = segs.pop();
-    const JENIS = { judul: "Judul", sub: "Keterangan", eyebrow: "Teks kecil", kicker: "Teks kecil" };
-    const bagian = segs.join(" ").replace(/\b\w/g, (c) => c.toUpperCase()) || "Umum";
-    return `${bagian} · ${JENIS[jenis] || jenis}`;
+    const JENIS = {
+      judul: "Judul", sub: "Keterangan", desc: "Keterangan",
+      eyebrow: "Teks kecil di atas judul", kicker: "Teks kecil di atas judul",
+      paragraf1: "Paragraf 1", paragraf2: "Paragraf 2",
+    };
+    const seg = (key.split(".")[1] || key).split("_");
+    const last = seg[seg.length - 1];
+    const jenis = JENIS[last];
+    const bagian = (jenis ? seg.slice(0, -1) : seg)
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+    return jenis ? `${bagian} — ${jenis}` : bagian;
   }
 
   async function muatDefaultTeks(page) {

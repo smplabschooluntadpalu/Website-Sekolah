@@ -1566,3 +1566,19 @@ p:last-child { margin-bottom: 0; }
   color: var(--gold-600);
 }
 .footer .brand__city { color: var(--gold-500); }
+
+/* ===== Keterangan rata kiri-kanan (justify) ===== */
+.section p,
+.page-hero p,
+.hero__text,
+.footer p,
+.lead {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+/* Blok yang memang didesain rata tengah tetap tengah */
+.section-head--center p,
+.center p,
+.cta-strip p,
+.final-cta p { text-align: center; }
