@@ -130,7 +130,7 @@
     });
   });
 
-  /* ---------- 7. Countdown PPDB ---------- */
+  /* ---------- 7. Countdown SPMB ---------- */
   const cd = $("#countdown");
   if (cd) {
     // Baca target setiap tick agar mendukung update dinamis dari CMS (js/cms.js)

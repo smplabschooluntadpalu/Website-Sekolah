@@ -129,6 +129,7 @@
     berita: "Kelola Berita",
     agenda: "Kelola Agenda",
     galeri: "Kelola Galeri",
+    teks: "Teks Halaman",
     pengaturan: "Pengaturan Website",
   };
   function switchView(name) {
@@ -142,6 +143,7 @@
     if (name === "agenda") loadAgenda();
     if (name === "galeri") loadGaleri();
     if (name === "pengaturan") loadPengaturan();
+    if (name === "teks") loadTeks($("#teksPage").value);
     if (name === "dashboard") loadDashboard();
   }
   $$(".nav-item[data-view]").forEach((b) =>
@@ -695,6 +697,102 @@
     } finally {
       btn.disabled = false;
       btn.textContent = "Simpan Pengaturan";
+    }
+  });
+
+  /* ================= TEKS HALAMAN ================= */
+  // Default teks diambil langsung dari HTML statis (selalu sinkron)
+  const teksDefaults = {};   // "index" -> { "index.hero_judul": "..." }
+  let teksPengaturan = null; // cache tabel pengaturan
+
+  function labelTeks(key) {
+    const part = key.split(".")[1] || key;
+    const segs = part.split("_");
+    const jenis = segs.pop();
+    const JENIS = { judul: "Judul", sub: "Keterangan", eyebrow: "Teks kecil", kicker: "Teks kecil" };
+    const bagian = segs.join(" ").replace(/\b\w/g, (c) => c.toUpperCase()) || "Umum";
+    return `${bagian} · ${JENIS[jenis] || jenis}`;
+  }
+
+  async function muatDefaultTeks(page) {
+    if (teksDefaults[page]) return teksDefaults[page];
+    const res = await fetch(`../${page}.html`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Gagal membaca ${page}.html`);
+    const doc = new DOMParser().parseFromString(await res.text(), "text/html");
+    const map = {};
+    doc.querySelectorAll("[data-cms-text]").forEach((el) => {
+      map[el.dataset.cmsText] = el.textContent.replace(/\s+/g, " ").trim();
+    });
+    teksDefaults[page] = map;
+    return map;
+  }
+
+  async function loadTeks(page) {
+    const wrap = $("#teksFields");
+    wrap.innerHTML = `<p style="color:var(--ink-3)">Memuat teks halaman...</p>`;
+    try {
+      if (!teksPengaturan) {
+        const rows = await SupabaseDB.from("pengaturan").select("*");
+        teksPengaturan = {};
+        rows.forEach((r) => (teksPengaturan[r.kunci] = r.nilai));
+      }
+      const defaults = await muatDefaultTeks(page);
+      const keys = Object.keys(defaults);
+      if (!keys.length) {
+        wrap.innerHTML = `<p style="color:var(--ink-3)">Tidak ada teks yang bisa diedit di halaman ini.</p>`;
+        return;
+      }
+      wrap.innerHTML = keys
+        .map((key) => {
+          const def = defaults[key];
+          const val = teksPengaturan["teks_" + key];
+          const effective = val && val.trim() ? val : def;
+          const field =
+            def.length > 90
+              ? `<textarea data-teks="${esc(key)}" rows="3">${esc(effective)}</textarea>`
+              : `<input data-teks="${esc(key)}" type="text" value="${esc(effective)}">`;
+          return `<div class="field">
+            <label>${esc(labelTeks(key))}</label>
+            ${field}
+            <small class="hint">Bawaan: ${esc(def.length > 120 ? def.slice(0, 120) + "…" : def)}</small>
+          </div>`;
+        })
+        .join("");
+    } catch (e) {
+      wrap.innerHTML = `<p style="color:var(--red)">Gagal memuat: ${esc(e.message)}</p>`;
+    }
+  }
+
+  $("#teksPage").addEventListener("change", (e) => loadTeks(e.target.value));
+  $("#teksForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = $("#btnSaveTeks");
+    btn.disabled = true;
+    btn.textContent = "Menyimpan...";
+    try {
+      const inputs = $$("#teksFields [data-teks]");
+      for (const input of inputs) {
+        const key = input.dataset.teks;
+        const page = key.split(".")[0];
+        const def = ((teksDefaults[page] || {})[key] || "").trim();
+        const val = input.value.trim();
+        const kunci = "teks_" + key;
+        if (val && val !== def) {
+          // simpan hanya yang benar-benar diubah
+          await SupabaseDB.from("pengaturan").upsert({ kunci, nilai: val }, { onConflict: "kunci" });
+          teksPengaturan[kunci] = val;
+        } else if (teksPengaturan[kunci] !== undefined) {
+          // kembali ke teks bawaan -> hapus override
+          await SupabaseDB.from("pengaturan").delete().eq("kunci", kunci);
+          delete teksPengaturan[kunci];
+        }
+      }
+      toast("Teks halaman berhasil disimpan.");
+    } catch (ex) {
+      toast("Gagal menyimpan: " + ex.message, true);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Simpan Teks";
     }
   });
 

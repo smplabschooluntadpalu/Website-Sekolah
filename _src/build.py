@@ -3,7 +3,7 @@
 Build sederhana: gabungkan partial header/footer + isi halaman menjadi HTML final.
 Jalankan:  python3 _src/build.py
 Output:    index.html, profil.html, program.html, berita.html, galeri.html,
-           ppdb.html, kontak.html  (di root folder project)
+           spmb.html, kontak.html  (di root folder project)
 """
 from pathlib import Path
 
@@ -54,7 +54,7 @@ TEMPLATE = """<!DOCTYPE html>
 
 PAGES = [
     ("index",   "SMP Labschool UNTAD Palu — Sekolah Laboratorium Yayasan Bungamputi",
-                "SMP Labschool UNTAD Palu: sekolah menengah pertama di bawah Yayasan Bungamputi Universitas Tadulako. Informasi PPDB 2026/2027, program, seragam, berita, dan profil sekolah."),
+                "SMP Labschool UNTAD Palu: sekolah menengah pertama di bawah Yayasan Bungamputi Universitas Tadulako. Informasi SPMB 2026/2027, program, seragam, berita, dan profil sekolah."),
     ("profil",  "Profil Sekolah — SMP Labschool UNTAD Palu",
                 "Sejarah, visi misi, struktur organisasi, kepala sekolah, dan fasilitas SMP Labschool UNTAD Palu."),
     ("program", "Program, Seragam & Kegiatan — SMP Labschool UNTAD Palu",
@@ -63,7 +63,7 @@ PAGES = [
                 "Kabar terbaru, prestasi, agenda, dan pengumuman resmi SMP Labschool UNTAD Palu."),
     ("galeri",  "Galeri Kegiatan — SMP Labschool UNTAD Palu",
                 "Dokumentasi kegiatan akademik, seni, olahraga, pramuka, dan momen siswa SMP Labschool UNTAD."),
-    ("ppdb",    "PPDB 2026/2027 — SMP Labschool UNTAD Palu",
+    ("spmb",    "SPMB 2026/2027 — SMP Labschool UNTAD Palu",
                 "Informasi penerimaan peserta didik baru kelas VII: jalur pendaftaran, syarat, jadwal, biaya, dan formulir online."),
     ("kontak",  "Kontak & Lokasi — SMP Labschool UNTAD Palu",
                 "Alamat, telepon, email, jam layanan, dan formulir kontak SMP Labschool UNTAD Palu."),
@@ -71,7 +71,7 @@ PAGES = [
 
 NAV_ACTIVE = {
     "index": "index.html", "profil": "profil.html", "program": "program.html",
-    "berita": "berita.html", "galeri": "galeri.html", "ppdb": "ppdb.html",
+    "berita": "berita.html", "galeri": "galeri.html", "spmb": "spmb.html",
     "kontak": "kontak.html",
 }
 

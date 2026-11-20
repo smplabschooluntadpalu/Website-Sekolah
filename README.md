@@ -2,7 +2,7 @@
 
 Website **SMP Labschool UNTAD** (Yayasan Bungamputi · Universitas Tadulako, Palu)
 bergaya **Eduma (classic education)** — navy + orange sesuai logo sekolah, hero besar,
-kartu program, berita, agenda, countdown PPDB — dibuat **custom HTML/CSS/JS**
+kartu program, berita, agenda, countdown SPMB — dibuat **custom HTML/CSS/JS**
 tanpa WordPress/LMS, jadi ringan, cepat, dan bisa di-hosting gratis.
 
 ## Buka dulu
@@ -49,13 +49,13 @@ python3 _src/build.py      # menghasilkan ulang semua *.html
 | Jadwal seragam | `_src/pages/program.html` (bagian "Seragam & Budaya Sekolah") + `_src/pages/index.html` (ringkasan) |
 | Foto | timpa file di `assets/` dengan nama sama (hero.jpg, campus.jpg, dst.) |
 | Data statistik | atribut `data-count` di `_src/pages/index.html` |
-| Tanggal countdown PPDB | `data-target` pada `#countdown` (format ISO 8601 +08:00) |
+| Tanggal countdown SPMB | `data-target` pada `#countdown` (format ISO 8601 +08:00) |
 | Peta | ganti `src` iframe di `_src/pages/kontak.html` dengan embed Google Maps |
 | Warna brand | blok `:root` di `css/style.css` — navy `#00104f–#002080`, orange `#f7941d`, hijau `#6ba32a` |
 | Logo | ganti `assets/logo.png` (PNG transparan) |
 | Foto kepala sekolah | ganti `assets/kepsek.png` (cutout) dan `assets/kepsek-square.png` (profil); `assets/kepsek.jpg` untuk galeri |
 
-## Formulir PPDB & kontak
+## Formulir SPMB & kontak
 
 Validasi sudah jalan di sisi klien, tapi **belum mengirim ke mana pun** (demo).
 Untuk produksi, pilih salah satu:
@@ -89,3 +89,50 @@ kepala sekolah; arahkan DNS ke hosting di atas.
 (seperti demo Eduma), pilihan paling dekat adalah WordPress + theme Eduma
 (±US$69 sekali bayar) + plugin LMS LearnPress. Website custom ini bisa tetap
 dipakai sebagai halaman profil sekolah, dengan LMS di subdomain terpisah.
+
+## Panel Admin (CMS)
+
+Website ini sudah terhubung ke **Supabase** sebagai backend. Admin bisa mengelola
+berita, agenda, galeri, dan info umum (kontak, statistik, tanggal penutupan SPMB)
+lewat panel admin di:
+
+```
+/admin/          →  buka admin/index.html
+```
+
+### Membuat akun admin pertama (satu kali)
+
+Pendaftaran publik dimatikan demi keamanan, jadi akun admin dibuat manual:
+
+1. Buka [Supabase Dashboard](https://supabase.com/dashboard) → proyek ini.
+2. Masuk ke **Authentication → Users → Add user → Create new user**.
+3. Isi email + kata sandi admin, centang **Auto Confirm User**, klik **Create user**.
+4. Admin sekarang bisa masuk di `https://<domain-anda>/admin/`.
+
+### Yang bisa dikelola admin
+
+| Menu | Tampil di website |
+|---|---|
+| Berita | Halaman Berita (kartu + filter kategori) & Beranda |
+| Agenda | Halaman Berita & Beranda |
+| Galeri | Halaman Galeri & strip galeri Beranda |
+| Pengaturan | Header, footer, halaman Kontak, statistik & countdown SPMB di Beranda |
+
+Gambar bisa di-upload langsung dari formulir (tersimpan di Supabase Storage,
+bucket `media`) atau diisi URL gambar.
+
+### Berkas teknis CMS
+
+```
+├─ admin/
+│  ├─ index.html       Panel admin (login + dashboard + CRUD)
+│  ├─ css/admin.css    Tampilan panel admin
+│  └─ js/admin.js      Logika admin (Supabase Auth, REST, Storage)
+├─ js/config.js        Konfigurasi Supabase (URL + anon key — aman untuk publik)
+├─ js/supabase.js      Klien Supabase tanpa dependensi
+└─ js/cms.js           Loader konten dinamis untuk situs publik (dengan fallback statis)
+```
+
+Catatan keamanan: yang dipakai di frontend hanyalah **anon key** — aman karena
+Row Level Security (RLS) aktif: publik hanya bisa membaca, menulis data wajib
+login. **Jangan pernah** menaruh `service_role` key di berkas mana pun di repo ini.

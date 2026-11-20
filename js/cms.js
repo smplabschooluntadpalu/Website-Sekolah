@@ -120,7 +120,12 @@
         }
       });
     });
-    // Target countdown PPDB
+    // Teks halaman (judul & keterangan) — kunci di DB: teks_<halaman>.<bagian>
+    $$("[data-cms-text]").forEach((el) => {
+      const v = P["teks_" + el.dataset.cmsText];
+      if (v && v.trim()) el.textContent = v;
+    });
+    // Target countdown SPMB
     if (P.ppdb_target) {
       const cd = $("#countdown");
       if (cd) cd.dataset.target = P.ppdb_target;

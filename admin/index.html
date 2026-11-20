@@ -70,6 +70,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L6 21"/></svg>
         Galeri
       </button>
+      <button class="nav-item" data-view="teks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+        Teks Halaman
+      </button>
       <button class="nav-item" data-view="pengaturan">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         Pengaturan
@@ -131,7 +135,7 @@
       <div class="panel">
         <h2>Cara Kerja</h2>
         <ol class="howto">
-          <li>Semua perubahan yang disimpan di panel ini <strong>langsung tampil</strong> di website (berita, agenda, galeri, info kontak, statistik, dan tanggal penutupan PPDB).</li>
+          <li>Semua perubahan yang disimpan di panel ini <strong>langsung tampil</strong> di website (berita, agenda, galeri, info kontak, statistik, teks halaman, dan tanggal penutupan SPMB).</li>
           <li>Untuk gambar, klik <strong>Upload</strong> pada formulir — foto tersimpan otomatis di Supabase Storage. Bisa juga menempel URL gambar langsung.</li>
           <li>Satu berita bisa ditandai <strong>Unggulan</strong> untuk tampil besar di halaman Berita.</li>
           <li>Jika Supabase sedang tidak terjangkau, website tetap menampilkan konten statis terakhir.</li>
@@ -183,6 +187,31 @@
       <p class="empty" id="galeriEmpty" hidden>Belum ada foto. Klik “+ Tambah Foto” untuk mulai.</p>
     </section>
 
+    <!-- TEKS HALAMAN -->
+    <section class="view" id="view-teks" hidden>
+      <div class="view-head">
+        <p>Ubah judul &amp; keterangan di setiap halaman website. Mengosongkan kolom (atau menyamakan dengan teks bawaan) akan mengembalikan teks asli.</p>
+      </div>
+      <form id="teksForm" class="panel form-panel">
+        <div class="field" style="max-width:320px">
+          <label for="teksPage">Pilih halaman</label>
+          <select id="teksPage">
+            <option value="index">Beranda</option>
+            <option value="profil">Profil</option>
+            <option value="program">Program</option>
+            <option value="berita">Berita</option>
+            <option value="galeri">Galeri</option>
+            <option value="spmb">SPMB</option>
+            <option value="kontak">Kontak</option>
+          </select>
+        </div>
+        <div id="teksFields"></div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" id="btnSaveTeks">Simpan Teks</button>
+        </div>
+      </form>
+    </section>
+
     <!-- PENGATURAN -->
     <section class="view" id="view-pengaturan" hidden>
       <div class="view-head">
@@ -232,7 +261,7 @@
             <small class="hint">Kosongkan URL untuk menyembunyikan ikonnya dari website.</small>
           </div>
           <div class="field">
-            <label for="p_ppdb_target">Penutupan PPDB (countdown beranda)</label>
+            <label for="p_ppdb_target">Penutupan SPMB (countdown beranda)</label>
             <input id="p_ppdb_target" data-key="ppdb_target" type="datetime-local">
             <small class="hint">Format: tanggal &amp; jam penutupan pendaftaran.</small>
           </div>
