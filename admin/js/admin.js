@@ -364,7 +364,7 @@
       }
       try {
         if (isEdit) {
-          await SupabaseDB.from("berita").update(payload).eq("id", item.id);
+          await SupabaseDB.from("berita").eq("id", item.id).update(payload);
           toast("Berita berhasil diperbarui.");
         } else {
           await SupabaseDB.from("berita").insert(payload);
@@ -392,7 +392,7 @@
       const item = beritaCache.find((b) => b.id === delBtn.dataset.delBerita);
       if (item && confirm(`Hapus berita "${item.judul}"?`)) {
         try {
-          await SupabaseDB.from("berita").delete().eq("id", item.id);
+          await SupabaseDB.from("berita").eq("id", item.id).delete();
           toast("Berita dihapus.");
           loadBerita();
           loadDashboard();
@@ -486,7 +486,7 @@
       }
       try {
         if (isEdit) {
-          await SupabaseDB.from("agenda").update(payload).eq("id", item.id);
+          await SupabaseDB.from("agenda").eq("id", item.id).update(payload);
           toast("Agenda berhasil diperbarui.");
         } else {
           await SupabaseDB.from("agenda").insert(payload);
@@ -514,7 +514,7 @@
       const item = agendaCache.find((a) => a.id === delBtn.dataset.delAgenda);
       if (item && confirm(`Hapus agenda "${item.judul}"?`)) {
         try {
-          await SupabaseDB.from("agenda").delete().eq("id", item.id);
+          await SupabaseDB.from("agenda").eq("id", item.id).delete();
           toast("Agenda dihapus.");
           loadAgenda();
           loadDashboard();
@@ -587,8 +587,8 @@
       try {
         if (isEdit) {
           await SupabaseDB.from("galeri")
-            .update({ gambar, keterangan: $("#f_keterangan").value.trim() })
-            .eq("id", item.id);
+            .eq("id", item.id)
+            .update({ gambar, keterangan: $("#f_keterangan").value.trim() });
           toast("Foto berhasil diperbarui.");
         } else {
           const maxUrutan = galeriCache.reduce((m, x) => Math.max(m, x.urutan || 0), 0);
@@ -623,7 +623,7 @@
       const item = galeriCache.find((g) => g.id === delBtn.dataset.delGaleri);
       if (item && confirm("Hapus foto ini dari galeri?")) {
         try {
-          await SupabaseDB.from("galeri").delete().eq("id", item.id);
+          await SupabaseDB.from("galeri").eq("id", item.id).delete();
           toast("Foto dihapus.");
           loadGaleri();
           loadDashboard();
@@ -640,8 +640,8 @@
       const a = galeriCache[idx];
       const b = galeriCache[swapIdx];
       try {
-        await SupabaseDB.from("galeri").update({ urutan: b.urutan }).eq("id", a.id);
-        await SupabaseDB.from("galeri").update({ urutan: a.urutan }).eq("id", b.id);
+        await SupabaseDB.from("galeri").eq("id", a.id).update({ urutan: b.urutan });
+        await SupabaseDB.from("galeri").eq("id", b.id).update({ urutan: a.urutan });
         loadGaleri();
       } catch (ex) {
         toast("Gagal mengubah urutan: " + ex.message, true);
@@ -793,7 +793,7 @@
           teksPengaturan[kunci] = val;
         } else if (teksPengaturan[kunci] !== undefined) {
           // kembali ke teks bawaan -> hapus override
-          await SupabaseDB.from("pengaturan").delete().eq("kunci", kunci);
+          await SupabaseDB.from("pengaturan").eq("kunci", kunci).delete();
           delete teksPengaturan[kunci];
         }
       }

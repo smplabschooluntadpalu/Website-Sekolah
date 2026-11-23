@@ -118,6 +118,7 @@
       },
       async update(row) {
         const parts = [...this._filters];
+        if (!parts.length) throw new Error("update() butuh minimal satu filter, mis. .eq(\"id\", nilai) — dipanggil sebelum .update().");
         if (this._order) parts.push(`order=${this._order}`);
         return rest(`${this._table}?${parts.join("&")}`, {
           method: "PATCH",
@@ -145,6 +146,7 @@
       },
       async delete() {
         const parts = [...this._filters];
+        if (!parts.length) throw new Error("delete() butuh minimal satu filter, mis. .eq(\"id\", nilai) — dipanggil sebelum .delete().");
         return rest(`${this._table}?${parts.join("&")}`, { method: "DELETE" });
       },
     };
