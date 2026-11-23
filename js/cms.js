@@ -121,10 +121,21 @@
       });
     });
     // Teks halaman (judul & keterangan) — kunci di DB: teks_<halaman>.<bagian>
+    // Elemen dengan ikon SVG: ganti hanya teks (ikon tetap). Lainnya innerHTML
+    // agar penekanan sederhana (<em>/<strong>) bisa dipakai dari panel admin.
+    function applyCmsText(el, v) {
+      const svg = el.querySelector && el.querySelector("svg");
+      if (svg && !/<(svg|path|img|em|strong)/i.test(v)) {
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        let last = null, n;
+        while ((n = walker.nextNode())) if (n.textContent.trim()) last = n;
+        if (last) { last.textContent = v; return; }
+      }
+      el.innerHTML = v;
+    }
     $$("[data-cms-text]").forEach((el) => {
       const v = P["teks_" + el.dataset.cmsText];
-      // innerHTML agar penekanan (em/strong) bawaan tetap tampil bila ada
-      if (v && v.trim()) el.innerHTML = v;
+      if (v && v.trim()) applyCmsText(el, v);
     });
     // Angka statistik satuan (non-animasi) — kunci: stat_*
     $$("[data-cms-stat]").forEach((el) => {
@@ -135,6 +146,15 @@
     if (P.ppdb_target) {
       const cd = $("#countdown");
       if (cd) cd.dataset.target = P.ppdb_target;
+      const cdDate = $("#countdownDate");
+      const d = new Date(P.ppdb_target);
+      if (cdDate && !isNaN(d)) {
+        cdDate.textContent =
+          d.toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Makassar" }) +
+          ", pukul " +
+          d.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Makassar" }) +
+          " WITA";
+      }
     }
     // Statistik beranda
     const statMap = {

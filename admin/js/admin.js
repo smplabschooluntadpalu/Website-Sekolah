@@ -710,9 +710,13 @@
       judul: "Judul", sub: "Keterangan", desc: "Keterangan",
       eyebrow: "Teks kecil di atas judul", kicker: "Teks kecil di atas judul",
       paragraf1: "Paragraf 1", paragraf2: "Paragraf 2",
+      label: "Label", kategori: "Kategori", lokasi: "Lokasi", jabatan: "Jabatan",
+      caption: "Keterangan", ket: "Keterangan", hari: "Hari", teks: "Teks",
+      biaya: "Biaya", seleksi: "Seleksi", bidang: "Bidang", role: "Peran",
+      syarat: "Syarat", kuota: "Kuota", note: "Catatan", nama: "Nama",
     };
     const seg = (key.split(".")[1] || key).split("_");
-    const last = seg[seg.length - 1];
+    const last = seg[seg.length - 1].replace(/\d+$/, "");
     const jenis = JENIS[last];
     const bagian = (jenis ? seg.slice(0, -1) : seg)
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
