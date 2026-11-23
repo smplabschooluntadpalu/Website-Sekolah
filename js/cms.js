@@ -123,6 +123,12 @@
     // Teks halaman (judul & keterangan) — kunci di DB: teks_<halaman>.<bagian>
     $$("[data-cms-text]").forEach((el) => {
       const v = P["teks_" + el.dataset.cmsText];
+      // innerHTML agar penekanan (em/strong) bawaan tetap tampil bila ada
+      if (v && v.trim()) el.innerHTML = v;
+    });
+    // Angka statistik satuan (non-animasi) — kunci: stat_*
+    $$("[data-cms-stat]").forEach((el) => {
+      const v = P[el.dataset.cmsStat];
       if (v && v.trim()) el.textContent = v;
     });
     // Target countdown SPMB
